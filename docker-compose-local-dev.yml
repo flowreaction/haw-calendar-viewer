@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: ./backend/
+    env_file:
+      - ./backend-config.env
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+
+  nginx:
+    build:
+      context: ./frontend/
+    ports:
+      - "80:80"
+    env_file:
+      - ./frontend-config.env
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:4.2
+    ports:
+      - "27017-27019:27017-27019"
+    environment:
+      - MONGO_INITDB_DATABASE=hawcourses
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      # seeding scripts
+      - ./mongo/entrypoint:/docker-entrypoint-initdb.d
+      # named volumes
+      - ./mongo/data/mongo_data:/data/db
+      - ./mongo/data/mongo_config:/data/configdb
+# volumes:
+#   mongo_data:
+#   mongo_config:
