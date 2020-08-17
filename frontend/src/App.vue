@@ -3,7 +3,9 @@
     <v-app id="inspire">
       <v-navigation-drawer app clipped fixed permanent width="330px">
         <v-list-item>
-          <v-list-item-content class="text-subtitle-2">Select Your Courses below</v-list-item-content>
+          <v-list-item-content class="text-subtitle-2"
+            >Select Your Courses below</v-list-item-content
+          >
         </v-list-item>
         <v-list dense>
           <v-list-group v-for="(degree, h) in getCourses" :key="h" no-action>
@@ -13,7 +15,12 @@
               </v-list-item-content>
             </template>
 
-            <v-list-group v-for="(semester, i) in degree.semesters" :key="i" no-action sub-group>
+            <v-list-group
+              v-for="(semester, i) in degree.semesters"
+              :key="i"
+              no-action
+              sub-group
+            >
               <template v-slot:activator>
                 <v-list-item-content>
                   <v-list-item-title>{{ semester.name }}</v-list-item-title>
@@ -28,9 +35,14 @@
                 >
                   <template v-slot:default="{ active }">
                     <v-list-item-action>
-                      <v-checkbox :input-value="active" color="primary"></v-checkbox>
+                      <v-checkbox
+                        :input-value="active"
+                        color="primary"
+                      ></v-checkbox>
                     </v-list-item-action>
-                    <v-list-item-title v-text="course.replace('__', '/').replace('_', ' ')"></v-list-item-title>
+                    <v-list-item-title
+                      v-text="course.replace('__', '/').replace('_', ' ')"
+                    ></v-list-item-title>
                   </template>
                 </v-list-item>
               </v-list-item-group>
@@ -40,7 +52,7 @@
       </v-navigation-drawer>
 
       <v-app-bar app clipped-left flat>
-        <v-toolbar-title>HAW Calendar Vuer</v-toolbar-title>
+        <v-toolbar-title>HAW Calendar Viewer</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-switch
           flat
@@ -66,7 +78,9 @@
                     <v-icon small>mdi-chevron-right</v-icon>
                   </v-btn>
 
-                  <v-toolbar-title class="ml-3" v-if="$refs.calendar">{{ $refs.calendar.title }}</v-toolbar-title>
+                  <v-toolbar-title class="ml-3" v-if="$refs.calendar">{{
+                    $refs.calendar.title
+                  }}</v-toolbar-title>
                 </v-toolbar>
               </v-sheet>
               <v-sheet style="height: 95%">
@@ -90,19 +104,23 @@
                 >
                   <v-card color="grey lighten-5" min-width="350px" flat>
                     <v-toolbar color="blue-grey darken-1" dark>
-                    
-                      <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
+                      <v-toolbar-title
+                        v-html="selectedEvent.name"
+                      ></v-toolbar-title>
                       <v-spacer></v-spacer>
-                     
-                     
                     </v-toolbar>
                     <v-card-text>
                       <span v-html="selectedEvent.room"></span>
-                      <br>
+                      <br />
                       <span v-html="selectedEvent.lecturer"></span>
                     </v-card-text>
                     <v-card-actions>
-                      <v-btn text color="secondary" @click="selectedOpen = false">Cancel</v-btn>
+                      <v-btn
+                        text
+                        color="secondary"
+                        @click="selectedOpen = false"
+                        >Cancel</v-btn
+                      >
                     </v-card-actions>
                   </v-card>
                 </v-menu>
@@ -114,6 +132,14 @@
 
       <v-footer app>
         <span>&copy; {{ new Date().getFullYear() }}</span>
+        <v-spacer></v-spacer>
+        <v-btn
+          flat
+          icon
+          href="https://github.com/flowreaction/haw-calendar-viewer"
+        >
+          <v-icon>mdi-github</v-icon>
+        </v-btn>
       </v-footer>
     </v-app>
   </v-app>
@@ -132,7 +158,7 @@ export default {
       month: "Month",
       week: "Week",
       day: "Day",
-      "4day": "4 Days"
+      "4day": "4 Days",
     },
     weekdays: [1, 2, 3, 4, 5, 6, 0],
     selectedEvent: {},
@@ -145,17 +171,17 @@ export default {
     degrees: {
       et: {
         name: "Elektrotechnik",
-        courses: ["et1", "et2", "el1", "el2", "el3", "oop"]
+        courses: ["et1", "et2", "el1", "el2", "el3", "oop"],
       },
       re: {
         name: "Regernerative Systeme",
-        courses: ["1", "2", "3", "4", "5", "6"]
-      }
-    }
+        courses: ["1", "2", "3", "4", "5", "6"],
+      },
+    },
   }),
   computed: {
     ...mapGetters(["getCourses"]),
-    ...mapGetters(["getEvents"])
+    ...mapGetters(["getEvents"]),
   },
   methods: {
     ...mapActions(["fetchNames"]),
@@ -185,7 +211,7 @@ export default {
       this.focus = date;
       this.type = "day";
     },
-   
+
     setToday() {
       this.focus = "";
     },
@@ -210,7 +236,7 @@ export default {
       }
 
       nativeEvent.stopPropagation();
-    }
+    },
   },
   created() {
     this.$vuetify.theme.dark = false;
@@ -218,6 +244,6 @@ export default {
   },
   mounted() {
     this.$refs.calendar.checkChange();
-  }
+  },
 };
 </script>
