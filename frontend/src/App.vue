@@ -78,6 +78,7 @@
                   :events="getEvents"
                   type="month"
                   event-more
+                  start="2020-10-01"
                   :weekdays="weekdays"
                   @click:event="showEvent"
                 ></v-calendar>

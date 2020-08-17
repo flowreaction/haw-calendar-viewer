@@ -9,7 +9,7 @@ services:
     expose:
       - "3000"
     ports:
-      - "3000:3000"
+      - "3000"
     links:
       - mongodb
     depends_on:
@@ -27,8 +27,8 @@ services:
 
   mongodb:
     image: mongo:4.2
-    ports:
-      - "27017-27019:27017-27019"
+    expose:
+      - "27017-27019"
     environment:
       - MONGO_INITDB_DATABASE=hawcourses
       - MONGO_INITDB_ROOT_USERNAME=admin
