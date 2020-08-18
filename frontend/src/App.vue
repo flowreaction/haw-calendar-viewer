@@ -70,7 +70,9 @@
             <v-col>
               <v-sheet height="64">
                 <v-toolbar flat>
-                  <v-btn outlined class="mr-4" @click="setToday">Today</v-btn>
+                  <v-btn outlined class="mr-4" @click="setToday"
+                    >Semester Begin</v-btn
+                  >
                   <v-btn fab text small @click="prev">
                     <v-icon small>mdi-chevron-left</v-icon>
                   </v-btn>
@@ -130,13 +132,22 @@
         </v-container>
       </v-main>
 
+      <!-- <v-alert prominent color="blue-grey" style="z-index: 10">
+        <v-row align="center">
+          <v-col class="grow">
+            All information is without guarantees.
+            
+          </v-col>
+          
+          <v-col class="shrink">
+            <v-btn>Okay</v-btn>
+          </v-col>
+        </v-row>
+      </v-alert> -->
       <v-footer app>
         <span>&copy; {{ new Date().getFullYear() }}</span>
         <v-spacer></v-spacer>
-        <v-btn
-          icon
-          href="https://github.com/flowreaction/haw-calendar-viewer"
-        >
+        <v-btn icon href="https://github.com/flowreaction/haw-calendar-viewer">
           <v-icon>mdi-github</v-icon>
         </v-btn>
       </v-footer>
@@ -150,6 +161,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "App",
   data: () => ({
+    alert: true,
     eventInputCounter: 0,
     focus: "",
     type: "month",

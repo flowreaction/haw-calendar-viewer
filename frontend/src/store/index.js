@@ -18,14 +18,14 @@ export default new Vuex.Store({
   actions: {
     async fetchNames({ state, commit }) {
       try {
-        console.log(`api adress: ${state.API_URL}`);
+        // console.log(`api adress: ${state.API_URL}`);
         var response = await axios({
           crossdomain: true,
           method: "GET",
           url: state.API_URL + "/courses/allnames",
         });
-        console.log("names");
-        console.log(response.data);
+        // console.log("names");
+        // console.log(response.data);
         commit("setCourses", response.data);
       } catch (err) {
         console.log(err);
