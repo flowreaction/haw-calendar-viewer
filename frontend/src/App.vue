@@ -134,7 +134,6 @@
         <span>&copy; {{ new Date().getFullYear() }}</span>
         <v-spacer></v-spacer>
         <v-btn
-          flat
           icon
           href="https://github.com/flowreaction/haw-calendar-viewer"
         >
