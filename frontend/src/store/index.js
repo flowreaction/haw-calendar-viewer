@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     courses: {},
     events: [],
-    API_URL: process.env.API_URL,
+    API_URL: window.location.host,
   },
   getters: {
     getCourses: (state) => state.courses,
@@ -18,11 +18,13 @@ export default new Vuex.Store({
   actions: {
     async fetchNames({ state, commit }) {
       try {
+        console.log(`api adress: ${state.API_URL}`);
         var response = await axios({
           crossdomain: true,
           method: "GET",
           url: state.API_URL + "/courses/allnames",
         });
+        console.log("names");
         console.log(response.data);
         commit("setCourses", response.data);
       } catch (err) {
