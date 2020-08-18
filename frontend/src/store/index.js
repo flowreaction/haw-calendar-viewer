@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     courses: {},
     events: [],
-    API_URL: `http://${window.location.hostname}:${window.location.port}/api`,
+    API_URL: `${window.location.protocol}://${window.location.host}/api`,
   },
   getters: {
     getCourses: (state) => state.courses,
