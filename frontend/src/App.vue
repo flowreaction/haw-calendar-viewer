@@ -132,22 +132,52 @@
         </v-container>
       </v-main>
 
-      <!-- <v-alert prominent color="blue-grey" style="z-index: 10">
-        <v-row align="center">
+      <v-alert
+        v-model="alert"
+        transition="slide-y-reverse-transition"
+        icon="mdi-information-outline"
+        color="cyan lighten-3"
+        prominent
+        style="z-index: 10; position: absolute; bottom: 1vh"
+        class="mx-6 mb-12"
+      >
+        <h3 class="headline">Hi there,</h3>
+        <div>
+          all events should always be up to date. Once a day all the calendar
+          events are laoded from the HAW website and made accessible to you. If
+          you are interested in how this app was built, visit my
+          <button @click="goToGithub()">github here</button>.
+          <br />
+          <br />
+          Nonetheless, all information shown here is without guarantees.
+        </div>
+        <v-divider class="my-4 info" style="opacity: 0.22"></v-divider>
+        <v-row align="center" no-gutters>
           <v-col class="grow">
-            All information is without guarantees.
-            
+            Cookies are being used on this site, but you can opt out if you so
+            desire by clicking no thanks.
           </v-col>
-          
+          <v-spacer></v-spacer>
+          <v-col class="shrink mr-3">
+            <v-btn color="light-green darken-3" outlined @click="optIn()">
+              Okay <v-icon right>mdi-cookie</v-icon>
+            </v-btn>
+          </v-col>
           <v-col class="shrink">
-            <v-btn>Okay</v-btn>
+            <v-btn color="deep-orange accent-4" outlined @click="optOut()">
+              no thanks
+            </v-btn>
           </v-col>
         </v-row>
-      </v-alert> -->
+      </v-alert>
       <v-footer app>
         <span>&copy; {{ new Date().getFullYear() }}</span>
         <v-spacer></v-spacer>
-        <v-btn icon href="https://github.com/flowreaction/haw-calendar-viewer">
+        <v-btn
+          icon
+          href="https://github.com/flowreaction/haw-calendar-viewer"
+          target="_blank"
+        >
           <v-icon>mdi-github</v-icon>
         </v-btn>
       </v-footer>
@@ -198,9 +228,22 @@ export default {
     ...mapActions(["fetchNames"]),
     ...mapActions(["fetchCouseJsonData"]),
     ...mapActions(["deleteEvents"]),
-
+    optIn() {
+      this.alert = false;
+      this.$ga.enable();
+    },
+    optOut() {
+      this.aler = false;
+      this.$ga.disable();
+    },
     toggleTheme() {
       this.$vuetify.theme.dark = this.themeSwitchToDark;
+    },
+    goToGithub() {
+      window.open(
+        "https://github.com/flowreaction/haw-calendar-viewer",
+        "_blank"
+      );
     },
     toggleSelected(payload, course) {
       if (payload === true) {
