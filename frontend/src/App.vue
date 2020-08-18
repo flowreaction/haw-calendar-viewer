@@ -133,12 +133,12 @@
       </v-main>
 
       <v-alert
-        v-model="alert"
+        v-model="alert" 
+        outlined text 
         transition="slide-y-reverse-transition"
         icon="mdi-information-outline"
-        color="cyan lighten-3"
         prominent
-        style="z-index: 10; position: absolute; bottom: 1vh"
+        style="z-index: 10; position: absolute; bottom: 1vh; backdrop-filter: blur(3px)"
         class="mx-6 mb-12"
       >
         <h3 class="headline">Hi there,</h3>
@@ -159,12 +159,12 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col class="shrink mr-3">
-            <v-btn color="light-green darken-3" outlined @click="optIn()">
+            <v-btn  outlined @click="optIn()">
               Okay <v-icon right>mdi-cookie</v-icon>
             </v-btn>
           </v-col>
           <v-col class="shrink">
-            <v-btn color="deep-orange accent-4" outlined @click="optOut()">
+            <v-btn  outlined @click="optOut()">
               no thanks
             </v-btn>
           </v-col>
@@ -233,7 +233,7 @@ export default {
       this.$ga.enable();
     },
     optOut() {
-      this.aler = false;
+      this.alert = false;
       this.$ga.disable();
     },
     toggleTheme() {
